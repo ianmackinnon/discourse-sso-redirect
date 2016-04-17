@@ -2,7 +2,8 @@ export default {
   name: 'sso_redirect',
   initialize() {
     console.log("pathname", window.location.pathname);
-    if (window.location.pathname != "/") {
+    if (!(window.location.pathname == "/login" ||
+          window.location.pathname == "/")) {
       return;
     }
     const ssoPayload = $.cookie("sso_payload");
