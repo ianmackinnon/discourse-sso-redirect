@@ -4,6 +4,7 @@ export default {
     console.log("pathname", window.location.pathname);
     if (!(window.location.pathname == "/login" ||
           window.location.pathname == "/")) {
+      $.cookie("sso_payload", "", {expire: -1});
       return;
     }
     const ssoPayload = $.cookie("sso_payload");
@@ -18,7 +19,7 @@ export default {
         return;
       }
       clearInterval(interval);
-      $.cookie("ssoPayload", "", {expire: -1});
+      $.cookie("sso_payload", "", {expire: -1});
       window.location.assign(
         "/session/sso_provider?" + ssoPayload);
     }, 500);
